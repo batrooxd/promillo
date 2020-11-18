@@ -12,7 +12,7 @@ class MyDropdownWidget2 extends StatefulWidget {
 /// This is the private State class that goes with MyStatefulWidget.
 class _MyDropdownWidgetState2 extends State<MyDropdownWidget2> {
   String dropdownValue = 'Bier 0.3 l';
-  String volumeValue = '5 Vol. -%';
+  String volumeValue = '0.5';
   List<String> listWithDrinks = drinksToList();
 
   @override
@@ -21,7 +21,7 @@ class _MyDropdownWidgetState2 extends State<MyDropdownWidget2> {
       child: Column(
         children: [
           Container(
-            child: Text(volumeValue),
+            child: Text('${volumeValue} Vol. -%'),
           ),
           DropdownButton<String>(
             value: dropdownValue,
