@@ -8,3 +8,13 @@ drinksToList() {
   }
   return listDrinks;
 }
+
+giveMeVolume(String drinkName) {
+  String myDrinkName;
+  for (int i = 0; i < drinks.length; i++) {
+    if (drinks[i].name == drinkName) {
+      myDrinkName = drinks[i].volume.toString();
+    }
+  }
+  return myDrinkName;
+}
