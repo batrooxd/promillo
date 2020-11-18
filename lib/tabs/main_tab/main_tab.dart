@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:promillo/widgets/dropdown.dart';
-import 'package:promillo/widgets/dropdown2.dart';
-import 'package:promillo/widgets/promille.dart';
+import 'package:promillo/tabs/main_tab/dropdown.dart';
+import 'package:promillo/tabs/main_tab/dropdown2.dart';
+import 'package:promillo/tabs/main_tab/promille.dart';
 
 class MyMainTabWidget extends StatelessWidget {
   //MyMainTabWidget({Key key}) : super(key: key);

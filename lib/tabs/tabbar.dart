@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:promillo/tabs/main_tab.dart';
+import 'package:promillo/tabs/main_tab/main_tab.dart';
 
 class MyTabBar extends StatelessWidget {
   @override

@@ -1,4 +1,4 @@
-import 'package:promillo/drink.dart';
+import 'package:promillo/classes/drink.dart';
 
 var drinks = [
   Drink(name: 'Bier 0.3 l', volume: 0.5, quantity: 300),

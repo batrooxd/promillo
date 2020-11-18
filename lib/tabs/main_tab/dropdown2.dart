@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:promillo/functions.dart';
+import 'package:promillo/functions/functions.dart';
 
 /// This is the stateful widget that the main application instantiates.
 class MyDropdownWidget2 extends StatefulWidget {
