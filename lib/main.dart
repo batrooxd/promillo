@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'classes/drink.dart';
 
 void main() {
-  //runApp(MyApp());
   runApp(
     MultiProvider(
       providers: [
@@ -22,7 +21,6 @@ class Counter extends ChangeNotifier {
 
   incrementCounter() {
     counter++;
-
     notifyListeners();
   }
 }

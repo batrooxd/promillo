@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:promillo/tabs/main_tab/main_tab.dart';
+import 'package:promillo/tabs/permillevalue_tab/permillevalue_tab.dart';
 
 class MyTabBar extends StatelessWidget {
   @override
@@ -26,7 +27,7 @@ class MyTabBar extends StatelessWidget {
               Icon(Icons.supervisor_account),
               Icon(Icons.info),
               MyMainTabWidget(),
-              Icon(Icons.local_drink),
+              MyPermilleValueWidget(),
               Icon(Icons.settings),
             ],
           ),
