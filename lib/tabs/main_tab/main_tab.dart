@@ -26,10 +26,10 @@ class MyMainTabWidget extends StatelessWidget {
             child: MyDropdownWidget2(),
           ),
           Container(
-            padding: EdgeInsets.all(10),
-            color: Colors.lightGreen,
-            child: Text('Ein Button'),
-          ),
+              //padding: EdgeInsets.all(10),
+              //color: Colors.lightGreen,
+              //child: Text('Ein Button'),
+              ),
         ],
       ),
     );
