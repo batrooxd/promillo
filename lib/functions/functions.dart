@@ -1,4 +1,5 @@
 import 'package:promillo/classes/drinks.dart';
+import 'package:promillo/classes/person.dart';
 
 //Hilfsfunktion welche die Namen der Getränke in eine Liste schreibt
 drinksToList() {
@@ -18,3 +19,29 @@ giveMeVolume(String drinkName) {
   }
   return myDrinkName;
 }
+
+myGender(String gender) {
+  double widmark = 0;
+
+  switch (gender) {
+    case "m":
+      {
+        widmark = 0.68;
+      }
+      break;
+    case "w":
+      {
+        widmark = 0.55;
+      }
+      break;
+  }
+
+  return widmark;
+}
+
+// test() {
+//   var robert =
+//       new Person(name: "robert", alter: 30, gewicht: 90, geschlecht: "m");
+
+//   print(robert.alter);
+// }
