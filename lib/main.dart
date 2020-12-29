@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:promillo/tabs/tabbar.dart';
 import 'package:provider/provider.dart';
+import 'package:promillo/tabs/profile_tab/profile_tab.dart';
 
 import 'classes/drink.dart';
 import 'classes/person.dart';
