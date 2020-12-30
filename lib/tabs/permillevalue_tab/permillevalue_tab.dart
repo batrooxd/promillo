@@ -14,24 +14,51 @@ class _MyPermilleValueWidget extends State<MyPermilleValueWidget> {
     return Consumer<DrinkList>(
       builder: (context, drinklist, _) {
         return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              child: Text(drinklist.permille.toStringAsFixed(2)),
+              padding: EdgeInsets.all(10.0),
+              child: Text("Dein aktueller Promillewert beträgt:",
+                  style: TextStyle(fontSize: 20)),
+            ),
+            Center(
+              child: SizedBox(
+                height: 75,
+                width: 150,
+                child: Container(
+                  child: Center(
+                    child: Text(drinklist.permillechecker(),
+                        style: TextStyle(fontSize: 20)),
+                  ),
+                  color: drinklist.givemecolor(),
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(10.0),
+              child: Text(
+                drinklist.drivecarchecker(),
+                style: TextStyle(fontSize: 15),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            Divider(
+              color: Colors.black,
+              height: 20,
+              thickness: 5,
+              indent: 0,
+              endIndent: 0,
             ),
             SizedBox(
-              height: 200,
+              height: 250,
               child: Container(
-                color: Colors.lightBlue,
                 child: ListView.builder(
                   itemCount: drinklist.meineDrinkListe.length,
                   itemBuilder: (context, index) {
                     var d = drinklist.meineDrinkListe[index];
                     return ListTile(
                       title: Text(d.name),
-                      //subtitle: Text('${d.volume.toString()} Vol. -%'),
-                      subtitle: Text(drinklist.givemedate()),
+                      subtitle: Text(d.time.toString()),
                     );
                   },
                 ),

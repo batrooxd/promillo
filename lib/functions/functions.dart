@@ -1,5 +1,5 @@
 import 'package:promillo/classes/drinks.dart';
-import 'package:promillo/classes/person.dart';
+//import 'package:promillo/classes/person.dart';
 
 //Hilfsfunktion welche die Namen der Getränke in eine Liste schreibt
 drinksToList() {
