@@ -1,68 +1,133 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-//Input decoration
+// Color Converter
+_hexToColor(String code) =>
+    Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
+
+//TextStyle
+_textStyle() => TextStyle(color: _hexToColor("#F2A03D"), fontSize: 14.0);
+
+//InputDecoration
 _inputDecoration(label) => InputDecoration(
-      labelText: label,
-      fillColor: Colors.red,
-      border: new OutlineInputBorder(
-          borderRadius: new BorderRadius.circular(18.0),
-          borderSide: new BorderSide()),
+    labelText: label,
+    fillColor: Colors.white,
+    border: new OutlineInputBorder(
+        borderRadius: new BorderRadius.circular(18.0),
+        borderSide: new BorderSide()));
+
+//InputNameText field
+_inputAgeField() => TextFormField(
+      decoration: _inputDecoration("Alter"),
+      style: _textStyle(),
     );
 
-// Define a custom Form widget.
-class WeightFormWidget extends StatefulWidget {
-  @override
-  _WeightFormState createState() => _WeightFormState();
+//InputWeightText field
+_inputWeightField() => TextFormField(
+      decoration: _inputDecoration("Gewicht"),
+      style: _textStyle(),
+    );
+
+//Radio button (Gender)
+_genderRadio(int groupValue, handleRadioValueChanged) =>
+    Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        'Geschlecht',
+        style: new TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+      ),
+      Row(
+        children: <Widget>[
+          Radio(
+              value: 0,
+              groupValue: groupValue,
+              onChanged: handleRadioValueChanged),
+          Text(
+            "Männlich",
+            style: new TextStyle(
+              fontSize: 14.0,
+            ),
+          ),
+          Radio(
+              value: 1,
+              groupValue: groupValue,
+              onChanged: handleRadioValueChanged),
+          Text(
+            "Weiblich",
+            style: new TextStyle(
+              fontSize: 14.0,
+            ),
+          ),
+        ],
+      )
+    ]);
+
+//Submit(Raised Button)
+_submitForm() => RaisedButton(
+      onPressed: () {},
+      child: Text("Speichern"),
+    );
+
+//Reset(Caancel)
+_resetForm() =>
+    RaisedButton(onPressed: () {}, child: Text("Formular zurücksetzen"));
+
+//Shared Preferneces
+class SharedPrefs {
+  static SharedPreferences _weightPrefs;
+  init() async {
+    if (_weightPrefs == null) {
+      _weightPrefs = await SharedPreferences.getInstance();
+    }
+  }
+
+  String get userweight => _weightPrefs.getString(keyWeight) ?? "";
+
+  set userweight(String value) {
+    _weightPrefs.setString(keyWeight, value);
+  }
 }
 
-// Define a corresponding State class.
-// This class holds the data related to the Form.
-class _WeightFormState extends State<WeightFormWidget> {
-  // Create a text controller and use it to retrieve the current value
-  // of the TextField.
-  final weightController = TextEditingController();
+final sharedPrefs = SharedPrefs();
+const String keyWeight = "key_weight";
 
+class ProfileFormWidget extends StatefulWidget {
   @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    weightController.dispose();
-    super.dispose();
+  _FormsState createState() => _FormsState();
+}
+
+class _FormsState extends State<ProfileFormWidget> {
+  int _groupValue = -1;
+
+  void _handleRadioValueChanged(int value) {
+    setState(() {
+      this._groupValue = value;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Profil'),
-      ),
-      body: ListView(padding: const EdgeInsets.all(16.0), children: <Widget>[
-        TextField(
-          controller: weightController,
-          decoration: _inputDecoration("Gewicht"),
-        ),
-        TextField(
-          controller: weightController,
-          decoration: _inputDecoration("Alter"),
-        ),
-      ]),
-      floatingActionButton: RaisedButton(
-        // When the user presses the button, show an alert dialog containing
-        // the text that the user has entered into the text field.
-        onPressed: () {
-          return showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                // Retrieve the text the that user has entered by using the
-                // TextEditingController.
-                content: Text("Folgende Daten erfolgreich gespeichert:" +
-                    weightController.text),
-              );
-            },
-          );
-        },
-        child: Text("Speichern"),
-      ),
+      body: Container(
+          padding: EdgeInsets.all(8.0),
+          child: ListView(
+            children: <Widget>[
+              _genderRadio(_groupValue, _handleRadioValueChanged),
+              SizedBox(
+                height: 8.0,
+              ),
+              _inputAgeField(),
+              SizedBox(
+                height: 8.0,
+              ),
+              _inputWeightField(),
+              SizedBox(
+                height: 8.0,
+              ),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [_submitForm(), _resetForm()])
+            ],
+          )),
     );
   }
 }

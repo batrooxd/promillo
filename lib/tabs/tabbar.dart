@@ -3,7 +3,8 @@ import 'package:promillo/tabs/main_tab/main_tab.dart';
 import 'package:promillo/tabs/permillevalue_tab/permillevalue_tab.dart';
 //import 'package:promillo/tabs/profile_tab/profile_tab.dart';
 import 'package:promillo/tabs/info_tab/info_tab.dart';
-import 'package:promillo/tabs/profile_tab/Test_profile_tab.dart';
+//import 'package:promillo/tabs/profile_tab/Test_profile_tab.dart';
+import 'package:promillo/tabs/profile_tab/profile_tab.dart';
 import 'package:promillo/tabs/settings_tab/settings_tab.dart';
 
 class MyTabBar extends StatelessWidget {
@@ -28,7 +29,7 @@ class MyTabBar extends StatelessWidget {
           ),
           body: TabBarView(
             children: [
-              UserDataWidget(),
+              ProfileFormWidget(),
               InfoPageWidget(),
               MyMainTabWidget(),
               MyPermilleValueWidget(),
