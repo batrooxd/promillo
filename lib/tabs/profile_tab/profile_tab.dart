@@ -37,8 +37,11 @@ class _FormsState extends State<ProfileFormWidget> {
       );
 
   //Reset(Cancel)
-  _resetForm() =>
-      RaisedButton(onPressed: () {}, child: Text("Formular zurücksetzen"));
+  _resetForm() => RaisedButton(
+      onPressed: () {
+        weightController.clear();
+      },
+      child: Text("Formular zurücksetzen"));
 
   _inputWeightField() => TextFormField(
         decoration: _inputDecoration("Gewicht"),
