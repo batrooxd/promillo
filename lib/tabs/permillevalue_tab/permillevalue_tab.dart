@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'package:promillo/main.dart';
@@ -56,9 +57,10 @@ class _MyPermilleValueWidget extends State<MyPermilleValueWidget> {
                   itemCount: drinklist.meineDrinkListe.length,
                   itemBuilder: (context, index) {
                     var d = drinklist.meineDrinkListe[index];
+                    String formattedTime = DateFormat('kk.mm').format(d.time);
                     return ListTile(
-                      title: Text(d.name),
-                      subtitle: Text(d.time.toString()),
+                      title: Text(d.drink.name),
+                      subtitle: Text(formattedTime),
                     );
                   },
                 ),

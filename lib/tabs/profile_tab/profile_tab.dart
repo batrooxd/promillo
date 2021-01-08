@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
+//import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../main.dart';
 
 // Color Converter
 _hexToColor(String code) =>
@@ -22,37 +25,27 @@ class ProfileFormWidget extends StatefulWidget {
 }
 
 class _FormsState extends State<ProfileFormWidget> {
-  int _gender = -1;
-
-  //Submit(Raised Button)
-  _submitForm() => RaisedButton(
-        onPressed: () async {
-          print(weightController.text);
-          print(_gender);
-          var sharedPrefs = await SharedPreferences.getInstance();
-          sharedPrefs.setInt("weight", int.parse(weightController.text));
-          sharedPrefs.setInt("gender", (_gender));
-        },
-        child: Text("Speichern"),
-      );
-
   //Reset(Cancel)
-  _resetForm() => RaisedButton(
+  _resetForm(DrinkList drinkList) => RaisedButton(
       onPressed: () {
-        weightController.clear();
+        //weightController.clear();
       },
       child: Text("Formular zurücksetzen"));
 
-  _inputWeightField() => TextFormField(
+  _inputWeightField(DrinkList drinkList) => TextFormField(
         decoration: _inputDecoration("Gewicht"),
         style: _textStyle(),
         keyboardType: TextInputType.number,
-        controller: weightController,
+        initialValue: drinkList.gewicht.toString(),
+        //controller: weightController,
+        onChanged: (value) {
+          drinkList.setWeight(int.parse(value));
+        },
       );
 
   //Radio button (Gender)
   _genderRadio(
-    int _gender,
+    DrinkList drinkList,
     handleRadioValueChanged,
   ) =>
       Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
@@ -64,7 +57,7 @@ class _FormsState extends State<ProfileFormWidget> {
           children: <Widget>[
             Radio(
                 value: 0,
-                groupValue: _gender,
+                groupValue: drinkList.geschlecht,
                 onChanged: handleRadioValueChanged),
             Text(
               "Männlich",
@@ -74,7 +67,7 @@ class _FormsState extends State<ProfileFormWidget> {
             ),
             Radio(
                 value: 1,
-                groupValue: _gender,
+                groupValue: drinkList.geschlecht,
                 onChanged: handleRadioValueChanged),
             Text(
               "Weiblich",
@@ -86,35 +79,33 @@ class _FormsState extends State<ProfileFormWidget> {
         )
       ]);
 
-  final weightController = TextEditingController();
-  final genderController = TextEditingController();
+  //final weightController = TextEditingController();
 
-  void _handleRadioValueChanged(int value) {
-    setState(() {
-      this._gender = value;
-    });
-  }
+  // final genderController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-          padding: EdgeInsets.all(8.0),
-          child: ListView(
-            children: <Widget>[
-              _genderRadio(_gender, _handleRadioValueChanged),
-              SizedBox(
-                height: 8.0,
-              ),
-              _inputWeightField(),
-              SizedBox(
-                height: 8.0,
-              ),
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [_submitForm(), _resetForm()])
-            ],
-          )),
-    );
+        body: Container(
+            padding: EdgeInsets.all(8.0),
+            child: Consumer<DrinkList>(builder: (context, drinklist, _) {
+              return ListView(
+                children: <Widget>[
+                  _genderRadio(drinklist, (value) {
+                    drinklist.setGender(value);
+                  }),
+                  SizedBox(
+                    height: 8.0,
+                  ),
+                  _inputWeightField(drinklist),
+                  SizedBox(
+                    height: 8.0,
+                  ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [_resetForm(drinklist)])
+                ],
+              );
+            })));
   }
 }

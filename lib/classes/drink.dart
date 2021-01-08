@@ -3,11 +3,22 @@ class Drink {
   String name;
   double volume; // volume percentage
   int quantity; // in milliliters
-  String time;
+  //String time;
 
   Drink({
     this.name,
     this.volume,
     this.quantity,
   });
+}
+
+//Eine Trinkaktion
+
+class DrinkAction {
+  Drink drink;
+  DateTime time;
+
+  DrinkAction({this.drink}) {
+    this.time = DateTime.now();
+  }
 }

@@ -20,25 +20,6 @@ giveMeVolume(String drinkName) {
   return myDrinkName;
 }
 
-myGender(String gender) {
-  double widmark = 0;
-
-  switch (gender) {
-    case "m":
-      {
-        widmark = 0.68;
-      }
-      break;
-    case "w":
-      {
-        widmark = 0.55;
-      }
-      break;
-  }
-
-  return widmark;
-}
-
 // test() {
 //   var robert =
 //       new Person(name: "robert", alter: 30, gewicht: 90, geschlecht: "m");
