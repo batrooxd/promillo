@@ -1,7 +1,7 @@
 import 'package:promillo/classes/drink.dart';
 
+//Befüllen der Liste Drinks
 List<Drink> drinks = [
-  //const weil nicht verändert und normal nicht globale Variabeln machen
   Drink(name: 'Bier 0.3 l', volume: 5, quantity: 300),
   Drink(name: 'Bier 0.5 l', volume: 5, quantity: 500),
   Drink(name: 'Bier gespritzt 0.3 l', volume: 2.5, quantity: 300),

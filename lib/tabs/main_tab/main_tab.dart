@@ -1,35 +1,59 @@
 import 'package:flutter/material.dart';
-import 'package:promillo/tabs/main_tab/dropdown.dart';
+import 'package:promillo/classes/drink.dart';
+import 'package:promillo/classes/drinks.dart';
+import 'package:provider/provider.dart';
+import 'package:promillo/main.dart';
 
-class MyMainTabWidget extends StatelessWidget {
-  //MyMainTabWidget({Key key}) : super(key: key);
+//Main Tab mit Dropdown Menü zur Drinkauswahl
+class MyDropdownWidget2 extends StatefulWidget {
+  @override
+  _MyDropdownWidgetState2 createState() => _MyDropdownWidgetState2();
+}
+
+class _MyDropdownWidgetState2 extends State<MyDropdownWidget2> {
+  Drink selectedDrink = drinks[0];
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-              //padding: EdgeInsets.all(10),
-              //color: Colors.lightGreen,
-              //child: Text('Alkoholgehalt des Getränks'),
-              //child: MyPromilleDisplayWidget(),
+    return Consumer<DrinkList>(builder: (context, drinklist, _) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              child: Text('${selectedDrink.volume} Vol. -%'),
+            ),
+            DropdownButton<Drink>(
+              value: selectedDrink,
+              iconSize: 24,
+              style: TextStyle(color: Colors.black),
+              underline: Container(
+                height: 0,
               ),
-          Container(
-            //padding: EdgeInsets.all(10),
-            //color: Colors.lightGreen,
-            //child: Text('Das gewählte Getränk'),
-            child: MyDropdownWidget2(),
-          ),
-          Container(
-              //padding: EdgeInsets.all(10),
-              //color: Colors.lightGreen,
-              //child: Text('Ein Button'),
-              ),
-        ],
-      ),
-    );
+              onChanged: (Drink drink) {
+                setState(() {
+                  selectedDrink = drink;
+                });
+              },
+              items: drinks.map<DropdownMenuItem<Drink>>((Drink drink) {
+                return DropdownMenuItem<Drink>(
+                  value: drink,
+                  child: Text(drink.name),
+                );
+              }).toList(),
+            ),
+            FlatButton(
+              color: Color(0xff3D3D3D),
+              textColor: Colors.white,
+              child: Text("Hinzufügen"),
+              onPressed: () {
+                drinklist.adddrink(selectedDrink);
+              },
+            ),
+          ],
+        ),
+      );
+    });
   }
 }

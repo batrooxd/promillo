@@ -3,8 +3,8 @@ class Drink {
   String name;
   double volume; // volume percentage
   int quantity; // in milliliters
-  //String time;
 
+  //Konstruktor
   Drink({
     this.name,
     this.volume,
@@ -12,12 +12,12 @@ class Drink {
   });
 }
 
-//Eine Trinkaktion
-
+//Datenklasse für eine Trinkaktion
 class DrinkAction {
   Drink drink;
   DateTime time;
 
+  //Konstruktor
   DrinkAction({this.drink}) {
     this.time = DateTime.now();
   }

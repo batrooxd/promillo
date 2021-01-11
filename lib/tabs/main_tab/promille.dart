@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//Widget zur Anzeige des Promillewerts
 class MyPromilleDisplayWidget extends StatefulWidget {
   @override
   _MyPromilleDisplayWidgetState createState() =>

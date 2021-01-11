@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-//import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../main.dart';
 
 // Color Converter
@@ -28,7 +26,7 @@ class _FormsState extends State<ProfileFormWidget> {
   //Reset(Cancel)
   _resetForm(DrinkList drinkList) => RaisedButton(
       onPressed: () {
-        //weightController.clear();
+        drinkList.setWeight(int.parse('80'));
       },
       child: Text("Formular zurücksetzen"));
 
@@ -37,7 +35,6 @@ class _FormsState extends State<ProfileFormWidget> {
         style: _textStyle(),
         keyboardType: TextInputType.number,
         initialValue: drinkList.gewicht.toString(),
-        //controller: weightController,
         onChanged: (value) {
           drinkList.setWeight(int.parse(value));
         },
@@ -78,10 +75,6 @@ class _FormsState extends State<ProfileFormWidget> {
           ],
         )
       ]);
-
-  //final weightController = TextEditingController();
-
-  // final genderController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class MySettingsWidget extends StatelessWidget {
-  //MyMainTabWidget({Key key}) : super(key: key);
+//Widget mit Einstellungen (noch nicht implementiert)
 
+class MySettingsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(

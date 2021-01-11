@@ -1,5 +1,4 @@
 import 'package:promillo/classes/drinks.dart';
-//import 'package:promillo/classes/person.dart';
 
 //Hilfsfunktion welche die Namen der Getränke in eine Liste schreibt
 drinksToList() {
@@ -10,6 +9,7 @@ drinksToList() {
   return listDrinks;
 }
 
+//Hilfsfunktion welche den Akoholgehalt eines Getränks zurückgibt
 giveMeVolume(String drinkName) {
   String myDrinkName;
   for (int i = 0; i < drinks.length; i++) {
@@ -19,10 +19,3 @@ giveMeVolume(String drinkName) {
   }
   return myDrinkName;
 }
-
-// test() {
-//   var robert =
-//       new Person(name: "robert", alter: 30, gewicht: 90, geschlecht: "m");
-
-//   print(robert.alter);
-// }

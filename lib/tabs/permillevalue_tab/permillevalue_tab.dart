@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-
 import 'package:promillo/main.dart';
 
+//Widget zur Anzeige des Promillewertes und DrinkList
 class MyPermilleValueWidget extends StatefulWidget {
   @override
   _MyPermilleValueWidget createState() => _MyPermilleValueWidget();
